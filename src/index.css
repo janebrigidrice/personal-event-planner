@@ -1,111 +1,239 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
+/* Reset default spacing and make sizing more predictable */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
+/* Basic page styling */
+body {
+  background: #f4f6f8;
+  color: #222;
+  font-family: Arial, sans-serif;
+}
+
+/* Remove underline from links by default */
+a {
+  text-decoration: none;
+}
+
+/* Keep header navigation links white */
+.nav-links a {
+  color: white;
+}
+
+/* Make form links visible on white cards */
+.form-card a {
+  color: #527557;
+  font-weight: bold;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+/* Fixed header at the top of the screen */
+.app-header {
+  background: #527557;
+  color: white;
+  left: 0;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Layout inside the header */
+.header-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  max-width: 1100px;
+  padding: 0 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+/* Navigation menu layout */
+.nav-links {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+/* Logout button styling */
+.logout-btn {
+  background: #ff4d4f;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+}
+
+/* Push page content down so it is not hidden behind the fixed header */
+.main-content {
+  padding: 140px 1rem 2rem;
+}
+
+/* General page width */
+.page-container {
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+/* Card styling for forms and help page */
+.form-card,
+.help-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 1rem auto;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.form-card h2,
+.help-card h2 {
+  margin-bottom: 1rem;
+}
+
+/* Form layout */
+.form-card form {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  gap: 0.8rem;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.form-card input,
+.form-card textarea {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.8rem;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.form-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Main form button styling */
+.form-card button {
+  background: #527557;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+}
+
+/* Error text styling */
+.error-message {
+  color: #d93025;
+  font-size: 0.95rem;
+}
+
+/* Dashboard spacing */
+.dashboard-header {
+  margin-bottom: 1.5rem;
+}
+
+/* Message shown when there are no events */
+.empty-message {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+/* Event cards are displayed in a grid */
+.event-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Styling for each event card */
+.event-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem;
+}
+
+.event-card h3 {
+  color: #527557;
+  margin-bottom: 0.8rem;
+}
+
+.event-card p {
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons on event cards */
+.event-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  text-align: center;
+}
+
+.edit-btn {
+  background: #527557;
+}
+
+.delete-btn {
+  background: #d93025;
+}
+
+/* Help page spacing */
+.help-card h3 {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.help-card p,
+.help-card li {
+  line-height: 1.6;
+}
+
+.help-card ul {
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* Responsive layout for mobile screens */
+@media (max-width: 768px) {
+  .header-container {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.8rem;
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+  .nav-links {
+    flex-wrap: wrap;
   }
-}
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+  .main-content {
+    padding-top: 130px;
+  }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  .event-list {
+    grid-template-columns: 1fr;
+  }
 }
